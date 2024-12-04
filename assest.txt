@@ -1,0 +1,7 @@
+Colors : 
+
+#025373 // dark blue
+#1FAFBF // light blue 
+#1FBFBF // sea blue
+#1FBFBF // white 
+

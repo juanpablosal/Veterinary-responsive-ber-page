@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - Kiara Pets</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container booking-page">
+        <div class="booking-form">
+            <img src="MEDIA/logo.png" alt="Kiara Pets Logo" class="logo">
+            <h1>Schedule Your Pet's Visit</h1>
+            <form id="appointmentForm" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="ownerName">Your Name</label>
+                    <input type="text" id="ownerName" required placeholder="Enter your name">
+                </div>
+
+                <div class="form-group">
+                    <label for="petName">Pet's Name</label>
+                    <input type="text" id="petName" required placeholder="Enter your pet's name">
+                </div>
+
+                <div class="form-group">
+                    <label for="petType">Type of Pet</label>
+                    <select id="petType" required>
+                        <option value="">Select pet type</option>
+                        <option value="Dog">Dog</option>
+                        <option value="Cat">Cat</option>
+                        <option value="Bird">Bird</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="appointmentDate">Preferred Date</label>
+                    <input type="date" id="appointmentDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="appointmentTime">Preferred Time</label>
+                    <select id="appointmentTime" required>
+                        <option value="">Select time</option>
+                        <option value="09:00">9:00 AM</option>
+                        <option value="10:00">10:00 AM</option>
+                        <option value="11:00">11:00 AM</option>
+                        <option value="12:00">12:00 PM</option>
+                        <option value="14:00">2:00 PM</option>
+                        <option value="15:00">3:00 PM</option>
+                        <option value="16:00">4:00 PM</option>
+                        <option value="17:00">5:00 PM</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-button">
+                    <img src="MEDIA/whatsapp-icon.png" alt="WhatsApp" class="whatsapp-icon">
+                    Book via WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Set minimum date to today
+        const dateInput = document.getElementById('appointmentDate');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.min = today;
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const ownerName = document.getElementById('ownerName').value;
+            const petName = document.getElementById('petName').value;
+            const petType = document.getElementById('petType').value;
+            const date = document.getElementById('appointmentDate').value;
+            const time = document.getElementById('appointmentTime').value;
+
+            // Format the message for WhatsApp
+            const message = `Hello! I would like to schedule an appointment at Kiara Pets.%0A%0A*Appointment Details:*%0A- Owner: ${ownerName}%0A- Pet Name: ${petName}%0A- Pet Type: ${petType}%0A- Date: ${date}%0A- Time: ${time}%0A%0APlease confirm my appointment. Thank you!`;
+            
+            // Owner's WhatsApp number
+            const whatsappNumber = '573142527679';
+            window.location.href = `https://wa.me/${whatsappNumber}?text=${message}`;
+        }
+    </script>
+</body>
+</html>
